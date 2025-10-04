@@ -20,7 +20,7 @@ const Index = () => {
               <Sprout className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">NASA AgriSim</h1>
+              <h1 className="text-2xl font-bold text-foreground">NASA TerraGrow</h1>
               <p className="text-sm text-muted-foreground">Sustainable Farming with Satellite Data</p>
             </div>
           </div>
