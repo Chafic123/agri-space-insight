@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { MapPin, Search } from "lucide-react";
+import { MapPin, Search, ExternalLink } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface SatelliteMapProps {
@@ -19,7 +19,7 @@ const SatelliteMap = ({ location, onLocationChange }: SatelliteMapProps) => {
   const handleLocationUpdate = () => {
     const newLat = parseFloat(lat);
     const newLon = parseFloat(lon);
-    
+
     if (isNaN(newLat) || isNaN(newLon)) {
       toast({
         title: "Invalid Coordinates",
@@ -36,8 +36,10 @@ const SatelliteMap = ({ location, onLocationChange }: SatelliteMapProps) => {
     });
   };
 
-  // NASA Worldview URL for satellite imagery
-  const worldviewUrl = `https://worldview.earthdata.nasa.gov/?v=${location.lon - 2},${location.lat - 2},${location.lon + 2},${location.lat + 2}&l=VIIRS_NOAA20_CorrectedReflectance_TrueColor,MODIS_Aqua_CorrectedReflectance_TrueColor,MODIS_Terra_CorrectedReflectance_TrueColor&lg=true`;
+  // NASA Worldview URL (for external view)
+  const worldviewUrl = `https://worldview.earthdata.nasa.gov/?v=${location.lon - 2
+    },${location.lat - 2},${location.lon + 2},${location.lat + 2
+    }&l=VIIRS_NOAA20_CorrectedReflectance_TrueColor,MODIS_Aqua_CorrectedReflectance_TrueColor,MODIS_Terra_CorrectedReflectance_TrueColor&lg=true`;
 
   const presetLocations = [
     { name: "Iowa Corn Belt", lat: 42.0308, lon: -93.6319 },
@@ -52,28 +54,40 @@ const SatelliteMap = ({ location, onLocationChange }: SatelliteMapProps) => {
         <Card>
           <CardHeader>
             <CardTitle>NASA Worldview Satellite Imagery</CardTitle>
-            <CardDescription>Real-time Earth observations from multiple satellites</CardDescription>
+            <CardDescription>
+              Real-time Earth observations from multiple satellites
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="aspect-video overflow-hidden rounded-lg border bg-muted">
-              <iframe
-                src={worldviewUrl}
-                className="h-full w-full"
-                title="NASA Worldview"
-                allowFullScreen
-              />
+            <div className="aspect-video overflow-hidden rounded-lg border bg-muted flex items-center justify-center text-muted-foreground">
+              <p>
+                🚫 NASA Worldview cannot be embedded.
+                <br />
+                Use the button below to view live imagery.
+              </p>
             </div>
-            <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              <span>
-                Current Location: {location.lat.toFixed(4)}°N, {Math.abs(location.lon).toFixed(4)}°W
-              </span>
+            <div className="mt-4 flex items-center justify-between">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                <span>
+                  Current Location: {location.lat.toFixed(4)}°N,{" "}
+                  {Math.abs(location.lon).toFixed(4)}°W
+                </span>
+              </div>
+              <Button
+                variant="outline"
+                onClick={() => window.open(worldviewUrl, "_blank")}
+              >
+                <ExternalLink className="mr-2 h-4 w-4" />
+                Open in NASA Worldview
+              </Button>
             </div>
           </CardContent>
         </Card>
       </div>
 
       <div className="space-y-6">
+        {/* Location Controls */}
         <Card>
           <CardHeader>
             <CardTitle>Location Controls</CardTitle>
@@ -109,6 +123,7 @@ const SatelliteMap = ({ location, onLocationChange }: SatelliteMapProps) => {
           </CardContent>
         </Card>
 
+        {/* Presets */}
         <Card>
           <CardHeader>
             <CardTitle>Preset Locations</CardTitle>
@@ -137,25 +152,45 @@ const SatelliteMap = ({ location, onLocationChange }: SatelliteMapProps) => {
           </CardContent>
         </Card>
 
+        {/* Layers */}
         <Card>
           <CardHeader>
             <CardTitle>Satellite Layers</CardTitle>
             <CardDescription>Available data layers</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm">
-            <div className="flex items-center justify-between rounded-lg border p-2">
-              <span>True Color</span>
-              <span className="text-xs text-primary">Active</span>
+          <CardContent>
+            <div className="aspect-video overflow-hidden rounded-lg border bg-muted">
+              <iframe
+                src={worldviewUrl}
+                title="NASA Worldview"
+                width="100%"
+                height="100%"
+                style={{
+                  border: "none",
+                  minHeight: "480px",
+                }}
+                allowFullScreen
+              />
             </div>
-            <div className="flex items-center justify-between rounded-lg border p-2">
-              <span>Vegetation Index</span>
-              <span className="text-xs text-muted-foreground">Available</span>
-            </div>
-            <div className="flex items-center justify-between rounded-lg border p-2">
-              <span>Soil Moisture</span>
-              <span className="text-xs text-muted-foreground">Available</span>
+
+            <div className="mt-4 flex items-center justify-between">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                <span>
+                  Current Location: {location.lat.toFixed(4)}°N,{" "}
+                  {Math.abs(location.lon).toFixed(4)}°W
+                </span>
+              </div>
+              <Button
+                variant="outline"
+                onClick={() => window.open(worldviewUrl, "_blank")}
+              >
+                <ExternalLink className="mr-2 h-4 w-4" />
+                Open in NASA Worldview
+              </Button>
             </div>
           </CardContent>
+
         </Card>
       </div>
     </div>
