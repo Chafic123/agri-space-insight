@@ -10,7 +10,6 @@ interface DataDashboardProps {
 const DataDashboard = ({ location }: DataDashboardProps) => {
   const { historicalData, isLoading } = useFarmData(location);
 
-  // Mock historical data for visualization (in production, this would come from NASA APIs)
   const mockHistoricalData = [
     { month: "Jan", moisture: 45, vegetation: 0.65, temp: 12 },
     { month: "Feb", moisture: 42, vegetation: 0.68, temp: 14 },
