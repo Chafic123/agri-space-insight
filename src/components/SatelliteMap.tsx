@@ -150,37 +150,7 @@ const SatelliteMap = ({ location, onLocationChange }: SatelliteMapProps) => {
             </div>
           </CardContent>
         </Card>
-
-        {/* Satellite Layers */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Layers className="h-5 w-5" />
-              Satellite Data Layers
-            </CardTitle>
-            <CardDescription>
-              Choose different NASA satellite data visualizations
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {satelliteLayers.map((layer) => (
-                <Button
-                  key={layer.id}
-                  variant={selectedLayer === layer.id ? "default" : "outline"}
-                  className="h-auto py-3 flex flex-col items-center gap-2"
-                  onClick={() => setSelectedLayer(layer.id)}
-                >
-                  <span className="text-lg">{layer.icon}</span>
-                  <div className="text-xs">
-                    <div className="font-medium">{layer.name}</div>
-                    <div className="text-muted-foreground">{layer.description}</div>
-                  </div>
-                </Button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        
       </div>
 
       <div className="space-y-6">
