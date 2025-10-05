@@ -14,7 +14,7 @@ interface FarmSimulationProps {
 const FarmSimulation = ({ location }: FarmSimulationProps) => {
   const { toast } = useToast();
   const { soilMoisture, vegetation, temperature, isLoading } = useFarmData(location);
-  
+
   const [cropHealth, setCropHealth] = useState(50);
   const [waterLevel, setWaterLevel] = useState(60);
   const [nutrients, setNutrients] = useState(70);
@@ -325,8 +325,8 @@ const FarmSimulation = ({ location }: FarmSimulationProps) => {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-4">
-            <Button 
-              onClick={handleIrrigate} 
+            <Button
+              onClick={handleIrrigate}
               className="flex items-center gap-2"
               variant={irrigationEffectiveness === 'High' ? "default" : "secondary"}
             >
@@ -334,8 +334,8 @@ const FarmSimulation = ({ location }: FarmSimulationProps) => {
               Irrigate Field
               {irrigationEffectiveness === 'High' && <Badge variant="outline" className="ml-1 text-xs">Recommended</Badge>}
             </Button>
-            <Button 
-              onClick={handleFertilize} 
+            <Button
+              onClick={handleFertilize}
               variant={fertilizationEffectiveness === 'High' ? "default" : "secondary"}
               className="flex items-center gap-2"
             >
@@ -348,7 +348,7 @@ const FarmSimulation = ({ location }: FarmSimulationProps) => {
               Advance Day
             </Button>
           </div>
-          
+
           {/* Action Recommendations */}
           <div className="mt-4 p-3 bg-muted rounded-lg">
             <h4 className="text-sm font-medium mb-2">💡 Smart Farming Tips</h4>

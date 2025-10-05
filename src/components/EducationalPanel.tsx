@@ -145,24 +145,6 @@ const EducationalPanel = () => {
                 </div>
               </AccordionContent>
             </AccordionItem>
-
-            <AccordionItem value="glam">
-              <AccordionTrigger>
-                <div className="flex items-center gap-2">
-                  GLAM - Global Agriculture Monitoring
-                  <Badge variant="secondary">System</Badge>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="space-y-2">
-                <p className="text-sm text-muted-foreground">
-                  Web platform for near-real-time monitoring of global croplands using MODIS data.
-                </p>
-                <div className="rounded-lg bg-muted p-3 text-sm">
-                  <strong>Why it matters:</strong> GLAM provides free access to crop condition monitoring, helping farmers and
-                  policymakers respond quickly to agricultural challenges.
-                </div>
-              </AccordionContent>
-            </AccordionItem>
           </Accordion>
         </CardContent>
       </Card>
